@@ -45,7 +45,7 @@ public class BookController {
 
 	@RequestMapping("/delete/{bookId}")
 	public String deleteBook(
-		@PathVariable("bookId") Integer bookId)
+		@PathVariable("bookId") int bookId)
 	{
 		bookService.removeBook(bookId);
 		return "redirect:/index";
@@ -53,7 +53,7 @@ public class BookController {
 
 	@RequestMapping("/edit/{bookId}")
 	public String editBook(
-		@PathVariable("bookId")Integer bookId,
+		@PathVariable("bookId") int bookId,
 		Map<String, Object> map)
 	{
 		map.put("book", bookService.getBookById(bookId));

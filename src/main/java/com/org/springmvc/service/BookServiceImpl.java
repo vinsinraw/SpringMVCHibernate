@@ -14,30 +14,33 @@ public class BookServiceImpl implements BookService {
 
 	@Autowired 
 	private BookDao bookDao;
+
+	public void setBookDAO(BookDao bookDao) {
+		this.bookDao = bookDao;
+	}
 	
 	@Transactional
 	public void addBook(Book book) {
-		bookDao.addBook(book);
+		this.bookDao.addBook(book);
 	}
 
 	@Transactional
-	public void removeBook(Integer id) {
-		bookDao.removeBook(id);
+	public void removeBook(int id) {
+		this.bookDao.removeBook(id);
 	}
 
 	@Transactional
 	public List<Book> listBooks() {
-		return bookDao.listBooks();
+		return this.bookDao.listBooks();
 	}
 
 	@Transactional
 	public void updateBook(Book book) {
-		bookDao.updateBook(book);
+		this.bookDao.updateBook(book);
 	}
 
 	@Transactional
-	public Book getBookById(Integer bookId) {
-		return bookDao.getBookById(bookId);
+	public Book getBookById(int bookId) {
+		return this.bookDao.getBookById(bookId);
 	}
-
 }
