@@ -1,7 +1,6 @@
 package com.org.springmvc.dao;
 
 import java.util.List;
-
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.slf4j.Logger;
@@ -24,11 +23,9 @@ public class BookDaoImpl implements BookDao {
 	@Override
 	public void addBook(Book book) {
 		//sessionFactory.getCurrentSession().save(book);	? What is diff between save and persist?
-		
 		Session session = this.sessionFactory.getCurrentSession();
 		session.persist(book);
 		logger.info("Book saved successfully, Book Details="+book);
-		
 	}
 
 	@Override
@@ -50,8 +47,7 @@ public class BookDaoImpl implements BookDao {
 	@Override
 	@SuppressWarnings("unchecked")
 	public List<Book> listBooks() {
-/*		return sessionFactory.getCurrentSession()
-			.createQuery("from Book").list();*/
+		// return sessionFactory.getCurrentSession().createQuery("from Book").list();
 		
 		Session session = this.sessionFactory.getCurrentSession();
 		List<Book> booksList = session.createQuery("from Book").list();
@@ -64,7 +60,6 @@ public class BookDaoImpl implements BookDao {
 	@Override
 	public void updateBook(Book book) {
 		//sessionFactory.getCurrentSession().update(book);
-		
 		Session session = this.sessionFactory.getCurrentSession();
 		session.update(book);
 		logger.info("Book updated successfully, book Details="+book);

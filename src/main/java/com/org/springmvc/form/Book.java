@@ -3,28 +3,28 @@ package com.org.springmvc.form;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "BOOKS", schema = "TEST")
+@Table(name = "books", schema = "test")
 public class Book {
-
 	@Id
-	@Column(name="ID")
-	@GeneratedValue
+	@Column(name="id")
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Integer id;
 	
-	@Column(name="BOOK_NAME")
+	@Column(name="bookName")
 	private String bookName;
 
-	@Column(name="AUTHOR")
+	@Column(name="author")
 	private String author;
 	
-	@Column(name="PRICE")
+	@Column(name="price")
 	private int price;
 	
-	@Column(name="QTY")
+	@Column(name="quantity")
 	private int quantity;
 	
 	public Integer getId() 
@@ -56,4 +56,10 @@ public class Book {
 
 	public void setQuantity(int quantity) 
 	{this.quantity = quantity;}
+
+	@Override
+	public String toString() {
+		return "Book [id=" + id + ", bookName=" + bookName + ", author=" + author + ", price=" + price + ", quantity="
+				+ quantity + "]";
+	}
 }
