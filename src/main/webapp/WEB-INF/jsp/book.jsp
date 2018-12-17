@@ -44,7 +44,7 @@
 <body>
 
 <h2>Book Store - SpringMVC-Hibernate CRUD Application</h2>
-<p style="color:green;font-weight:bold;">To add a New Book please click <a href="<c:url value='/index' />" >
+<p style="color:green;font-weight:bold;">To add a New Book please click <a href="<c:url value='/' />" >
 	<img src="<c:url value='/images/vcard_add.png' />" title="Add a New Book"/>
 </a>
 </p>
