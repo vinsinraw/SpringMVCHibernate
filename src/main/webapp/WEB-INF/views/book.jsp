@@ -1,56 +1,26 @@
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri="http://www.springframework.org/tags" prefix="spring" %>
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form" %>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ page session="false" %>
 <html>
 <head>
-	<title>Spring 3 MVC Hibernate - Book CRUD</title>
+	<title>Spring 4 MVC Hibernate4 - Book CRUD</title>
 	<style type="text/css">
-		body {
-			font-family: verdana;
-			font-size: 12px;
-			margin: 40px;
-		}
-		.bookTable, .bookTable td {
-			border-collapse: collapse;
-			border: 1px solid #aaa;
-			margin: 2px;
-			padding: 2px 2px 2px 10px;
-			font-size: 12px;
-		}
-		.bookTable th {
-			font-weight: bold;
-			font-size: 12px;
-			background-color: #5C82FF;
-			color: white;
-		}
-		.bookLabel {
-			font-family: verdana;
-			font-size: 12px;
-			font-weight: bold;
-		}
-		a, a:AFTER {
-			color: blue;
-		}
+		.tg  {border-collapse:collapse;border-spacing:0;border-color:#ccc;}
+		.tg td{font-family:Arial, sans-serif;font-size:14px;padding:10px 5px;border-style:solid;border-width:1px;overflow:hidden;word-break:normal;border-color:#ccc;color:#333;background-color:#fff;}
+		.tg th{font-family:Arial, sans-serif;font-size:14px;font-weight:normal;padding:10px 5px;border-style:solid;border-width:1px;overflow:hidden;word-break:normal;border-color:#ccc;color:#333;background-color:#f0f0f0;}
+		.tg .tg-4eph{background-color:#f9f9f9}
 	</style>
-	<script type="text/javascript">
-	function deleteBook(bookId){
-		if(confirm('Do you want to delete this Book ?')){
-			var url = 'delete/'+bookId;
-			window.location.href = url;
-		}
-	}
-	</script>
 </head>
 <body>
+<h1>
+	Add a Book
+</h1>
 
-<h2>Book Store - SpringMVC-Hibernate CRUD Application</h2>
-<p style="color:green;font-weight:bold;">To add a New Book please click <a href="<c:url value='/' />" >
-	<img src="<c:url value='/images/vcard_add.png' />" title="Add a New Book"/>
-</a>
-</p>
-<c:url var="action" value="/book/add.html" ></c:url>
-<form:form method="post" action="${action}" commandName="book" cssClass="bookForm">
-	<table>
+<c:url var="addAction" value="/book/add" ></c:url>
+
+<form:form action="${addAction}" commandName="book">
+<table>
 	<c:if test="${!empty book.bookName}">
 	<tr>
 		<td>
@@ -118,34 +88,31 @@
 	</tr>
 </table>	
 </form:form>
-<h3>List of Books in Library</h3>
+<br>
+<h3>Books List</h3>
+
 <c:if test="${!empty bookList}">
-	<table class="bookTable">
+	<table class="tg">
 	<tr>
 		<th width="180">Book Name</th>
 		<th width="160">Author Name</th>
 		<th width="60">Price</th>
 		<th width="80">Quantity</th>
-		<th width="60">Action</th>
+		<th colspan="2" width="120">Action</th>
 	</tr>
+	
 	<c:forEach items="${bookList}" var="book">
 		<tr>
 			<td><a href="<c:url value='/edit/${book.id}' />" >${book.bookName}</a></td>
 			<td>${book.author}</td>
 			<td>${book.price}</td>
 			<td>${book.quantity}</td>
-			<td><img src="<c:url value='/images/vcard_delete.png' />"
-				title="Delete Book"
-				onclick="javascript:deleteBook(${book.id})" />
-				<a href="<c:url value='/edit/${book.id}' />"  >
-					<img src="<c:url value='/images/vcard_add.png' />" title="Edit Book"/>
-				</a>
-			</td>
+			<td><a href="<c:url value='/edit/${book.id}' />" >Edit</a></td>
+			<td><a href="<c:url value='/delete/${book.id}' />" >Delete</a></td>
 		</tr>
 	</c:forEach>
-	</table>
+	</table>	
 </c:if>
-
 
 </body>
 </html>
